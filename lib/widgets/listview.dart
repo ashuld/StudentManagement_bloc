@@ -45,7 +45,8 @@ class ListViewWidget extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => EditStudents(studentObj: data, index: index),
+                          builder: (context) =>
+                              EditStudents(studentObj: data, index: index),
                         ),
                       );
                     },

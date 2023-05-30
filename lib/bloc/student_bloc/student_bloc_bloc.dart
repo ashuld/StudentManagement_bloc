@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:database_flutter/db/function/db_functions.dart';
 import 'package:database_flutter/db/model/data_model.dart';
-import 'package:flutter/material.dart';
 
 part 'student_bloc_event.dart';
 part 'student_bloc_state.dart';
@@ -11,7 +10,7 @@ class StudentBloc extends Bloc<StudentEvent, StudentState> {
 
   StudentBloc() : super(StudentInitialState()) {
     on<LoadingEvent>((event, emit) async {
-      debugPrint('Loading');
+      // debugPrint('Loading');
       final studentDatafromDB = DatabaseRepo.getOpenedBox().values.toList();
       studentData.clear();
       studentData.addAll(studentDatafromDB);
@@ -29,7 +28,7 @@ class StudentBloc extends Bloc<StudentEvent, StudentState> {
 
       add(LoadingEvent());
 
-      debugPrint('Student Added');
+      // debugPrint('Student Added');
     });
 
     on<UpdateStudentEvent>((event, emit) async {
@@ -42,17 +41,17 @@ class StudentBloc extends Bloc<StudentEvent, StudentState> {
 
       DatabaseRepo.updateStudent(event.index, studentobj);
       add(LoadingEvent());
-      debugPrint('Student updated');
+      // debugPrint('Student updated');
     });
 
     on<DeleteStudentEvent>((event, emit) async {
       DatabaseRepo.deleteStudent(event.index);
       add(LoadingEvent());
-      debugPrint('deleted');
+      // debugPrint('deleted');
     });
 
     on<SearchStudentEvent>((event, emit) async {
-      debugPrint('searching');
+      // debugPrint('searching');
 
       List<StudentModel> searchOutput =
           await DatabaseRepo.searchStudent(event.query);

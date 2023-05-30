@@ -4,7 +4,6 @@ import 'package:database_flutter/pages/search/search.dart';
 import 'package:database_flutter/widgets/listview.dart';
 import 'package:flutter/material.dart';
 
-
 class ScreenHome extends StatelessWidget {
   const ScreenHome({super.key});
 
@@ -40,7 +39,7 @@ class ScreenHome extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const AddStudents(),
+              builder: (context) => AddStudents(),
             ),
           );
         },

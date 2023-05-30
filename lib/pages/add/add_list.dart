@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'dart:io';
 import 'package:database_flutter/bloc/photo_bloc/photo_bloc_bloc.dart';
 import 'package:database_flutter/bloc/student_bloc/student_bloc_bloc.dart';
@@ -6,18 +8,17 @@ import 'package:database_flutter/core/constants/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class AddStudents extends StatefulWidget {
-  const AddStudents({super.key});
+class AddStudents extends StatelessWidget {
+  AddStudents({super.key});
 
-  @override
-  State<AddStudents> createState() => _AddStudentsState();
-}
-
-class _AddStudentsState extends State<AddStudents> {
   TextEditingController nameController = TextEditingController();
+
   TextEditingController ageCOntroller = TextEditingController();
+
   TextEditingController placeCOntroller = TextEditingController();
+
   TextEditingController phoneNumberCOntroller = TextEditingController();
+
   File? photo;
 
   final formKey = GlobalKey<FormState>();
@@ -160,7 +161,7 @@ class _AddStudentsState extends State<AddStudents> {
                     onPressed: () {
                       if (formKey.currentState!.validate()) {
                         if (photo != null) {
-                          onAddStudentButtonClicked();
+                          onAddStudentButtonClicked(context);
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               behavior: SnackBarBehavior.floating,
@@ -184,7 +185,7 @@ class _AddStudentsState extends State<AddStudents> {
     );
   }
 
-  Future<void> onAddStudentButtonClicked() async {
+  Future<void> onAddStudentButtonClicked(BuildContext context) async {
     final name = nameController.text.trim();
     final age = ageCOntroller.text.trim();
     final phone = phoneNumberCOntroller.text.trim();
