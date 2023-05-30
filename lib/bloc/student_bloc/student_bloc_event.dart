@@ -2,7 +2,7 @@ part of 'student_bloc_bloc.dart';
 
 abstract class StudentEvent {}
 
-class LoadingEvent extends StudentEvent {}
+class StudentLoadingEvent extends StudentEvent {}
 
 class AddStudentEvent extends StudentEvent {
   String name;

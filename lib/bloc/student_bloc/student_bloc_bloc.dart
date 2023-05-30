@@ -9,7 +9,7 @@ class StudentBloc extends Bloc<StudentEvent, StudentState> {
   final List<StudentModel> studentData = [];
 
   StudentBloc() : super(StudentInitialState()) {
-    on<LoadingEvent>((event, emit) async {
+    on<StudentLoadingEvent>((event, emit) async {
       // debugPrint('Loading');
       final studentDatafromDB = DatabaseRepo.getOpenedBox().values.toList();
       studentData.clear();
@@ -26,7 +26,7 @@ class StudentBloc extends Bloc<StudentEvent, StudentState> {
           photo: event.imagepath);
       DatabaseRepo.addStudent(studentobj);
 
-      add(LoadingEvent());
+      add(StudentLoadingEvent());
 
       // debugPrint('Student Added');
     });
@@ -40,13 +40,13 @@ class StudentBloc extends Bloc<StudentEvent, StudentState> {
           photo: event.imagepath);
 
       DatabaseRepo.updateStudent(event.index, studentobj);
-      add(LoadingEvent());
+      add(StudentLoadingEvent());
       // debugPrint('Student updated');
     });
 
     on<DeleteStudentEvent>((event, emit) async {
       DatabaseRepo.deleteStudent(event.index);
-      add(LoadingEvent());
+      add(StudentLoadingEvent());
       // debugPrint('deleted');
     });
 
@@ -59,7 +59,7 @@ class StudentBloc extends Bloc<StudentEvent, StudentState> {
     });
 
     on<OnSearchClosed>((event, emit) {
-      add(LoadingEvent());
+      add(StudentLoadingEvent());
     });
   }
 }

@@ -14,7 +14,7 @@ class ListViewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<StudentBloc>(context).add(LoadingEvent());
+    BlocProvider.of<StudentBloc>(context).add(StudentLoadingEvent());
     return BlocBuilder<StudentBloc, StudentState>(
       builder: (context, state) {
         List<StudentModel> studentlist = state.studentList;
